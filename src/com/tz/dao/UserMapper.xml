@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 命名空间，包名+ 映射名，唯一即可。 -->
+<mapper namespace="com.tz.bean.UserMapper">
+
+    <!-- 增 删 查 改，都在这里面写 sql 来完成 -->
+
+
+    <select id="findUsers" resultType="com.tz.bean.User">
+        SELECT
+            id,
+            username,
+            password
+        FROM tz_user
+    </select>
+
+
+</mapper>
+        <!-- 1、它写完了，在到 mybatis-config.xml 去配置它，看mybatis-config.xml
+             2、测试。看 UserDao
+        -->
