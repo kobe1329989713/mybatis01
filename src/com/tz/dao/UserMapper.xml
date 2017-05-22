@@ -6,7 +6,7 @@
 
     <!-- 增 删 查 改，都在这里面写 sql 来完成 -->
 
-
+    <!-- resultType 返回类型。 -->
     <select id="findUsers" resultType="com.tz.bean.User">
         SELECT
             id,
@@ -14,6 +14,41 @@
             password
         FROM tz_user
     </select>
+
+    
+    
+    
+    <!-- 增 删 改 -->
+
+    <!-- insert是没有返回值的。
+        parameterType 参数类型。
+    -->
+    <insert id="saveUser" parameterType="com.tz.bean.User">
+        INSERT INTO tz_user (username,password,account,telephone,idcard,is_delete,male,birthday,email,address,teacher_id,subject_id,age,status,type) VALUES ( #{username}, #{password}, #{account}, #{telephone}, #{idcard}, #{isDelete}, #{male}, #{birthday}, #{email}, #{address}, #{teacherId}, #{subjectId}, #{age}, #{status}, #{type})
+    </insert>
+
+
+    <update id="updateUser" parameterType="com.tz.bean.User">
+        UPDATE tz_user SET username = #{username} WHERE id = #{id}
+    </update>
+
+
+
+<!-- 注：这些传参数问题。 -->
+
+    <!-- 删除 -->
+     	<!--<delete id="deleteUser" parameterType="int">
+     		delete from tz_user where id = #{0}
+     	</delete>-->
+
+   <!-- <delete id="deleteUser" parameterType="User">
+        delete from tz_user where id = #{id}
+    </delete>-->
+
+    <!-- 注：它需要传的是一个 map 参数。 -->
+    <delete id="deleteUser2" parameterType="java.util.Map">
+        delete from tz_user where username=#{username} and account=#{account}
+    </delete>
 
 
 </mapper>
